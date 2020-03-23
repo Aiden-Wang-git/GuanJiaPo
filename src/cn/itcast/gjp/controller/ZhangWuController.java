@@ -37,4 +37,18 @@ public class ZhangWuController {
     public void addZhangWu(ZhangWu zhangWu){
         service.addZhangWu(zhangWu);
     }
+
+    /**
+     * 编辑账务
+     */
+    public void editZhangWu(ZhangWu zhangWu){
+        service.editZhangWu(zhangWu);
+    }
+
+    /**
+     * 删除账务
+     */
+    public void deleteZhangWu(int zwid){
+        service.deleteZhangWu(zwid);
+    }
 }

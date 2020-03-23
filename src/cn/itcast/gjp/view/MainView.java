@@ -29,9 +29,11 @@ public class MainView {
                     break;
                 case 2:
                     //编辑账务
+                    editZhangWu();
                     break;
                 case 3:
                     //删除账务
+                    deleteZhangWu();
                     break;
                 case 4:
                     //查询账务
@@ -45,24 +47,6 @@ public class MainView {
                 default:
                     System.out.println("输入错误");
             }
-        }
-    }
-
-    public void selectZhangWu(){
-        System.out.println("1.查询所有      2.条件查询");
-        Scanner scanner = new Scanner(System.in);
-        int chooseSelect = scanner.nextInt();
-        switch (chooseSelect){
-            case 1:
-                //查询所有
-                selectAll();
-                break;
-            case 2:
-                //条件查询
-                select();
-                break;
-            default:
-                System.out.println("输入错误！");
         }
     }
 
@@ -84,6 +68,70 @@ public class MainView {
         String description = scanner.next();
         ZhangWu zhangWu = new ZhangWu(0,flname,money,zhangHu,createtime,description);
         controller.addZhangWu(zhangWu);
+    }
+
+
+    /**
+     * 编辑账务
+     */
+    public void editZhangWu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("当前为账务编辑功能");
+        selectAll();
+        System.out.println("请从一下账务当中选择要修改的账务的ID");
+        System.out.print("请输入编辑账务ID：");
+        int zwid = scanner.nextInt();
+        System.out.print("请输入分类名称：");
+        String flname = scanner.next();
+        System.out.print("请输入金额：");
+        double money = scanner.nextDouble();
+        System.out.print("请输入账户：");
+        String zhangHu = scanner.next();
+        System.out.print("请输入时间：");
+        String createtime = scanner.next();
+        System.out.print("请输入描述：");
+        String description = scanner.next();
+        ZhangWu zhangWu = new ZhangWu(zwid,flname,money,zhangHu,createtime,description);
+        controller.editZhangWu(zhangWu);
+    }
+
+
+    /**
+     * 删除账务
+     */
+    private void deleteZhangWu() {
+        System.out.println("请从以下账务中选择删除账务ID");
+        selectAll();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("请输入删除账务ID：");
+        int zwid = scanner.nextInt();
+        int flag = 0;
+        System.out.println("是否确认删除改账务？  1：确定    0：取消");
+        flag = scanner.nextInt();
+        if (flag == 1)
+            controller.deleteZhangWu(zwid);
+    }
+
+    /**
+     * 查询账务
+     */
+
+    public void selectZhangWu(){
+        System.out.println("1.查询所有      2.条件查询");
+        Scanner scanner = new Scanner(System.in);
+        int chooseSelect = scanner.nextInt();
+        switch (chooseSelect){
+            case 1:
+                //查询所有
+                selectAll();
+                break;
+            case 2:
+                //条件查询
+                select();
+                break;
+            default:
+                System.out.println("输入错误！");
+        }
     }
 
     public void selectAll(){

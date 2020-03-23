@@ -56,7 +56,35 @@ public class ZhangWuDao {
             System.out.println(ex);
             throw new RuntimeException("添加账务失败！");
         }
+    }
 
+    /**
+     * 编辑账务
+     */
+    public void editZhangWu(ZhangWu zhangWu){
+        String sql = "UPDATE gjp_zhangwu SET flname = ? ,money = ?,zhangHu = ?,createtime = ?,description=? WHERE zwid=?;";
+        try {
+            int number = qr.update(sql,zhangWu.getFlname(),zhangWu.getMoney(),zhangWu.getZhanghu(),zhangWu.getCreatetime(),zhangWu.getDescription(),zhangWu.getZwid());
+            System.out.println("编辑账务成功！");
+        }catch (Exception ex){
+            System.out.println(ex);
+            throw new RuntimeException("编辑账务失败！");
+        }
 
+    }
+
+    /**
+     * 删除账务
+     */
+    public void deleteZhangWu(int zwid){
+        String sql = "DELETE FROM gjp_zhangwu WHERE zwid =?;";
+        try {
+            int number = qr.update(sql,zwid);
+            if (number>0)
+                System.out.println("删除账务成功！");
+        }catch (Exception ex){
+            System.out.println(ex);
+            throw new RuntimeException("删除账务失败!");
+        }
     }
 }

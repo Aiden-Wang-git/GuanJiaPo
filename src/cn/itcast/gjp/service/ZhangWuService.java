@@ -28,4 +28,12 @@ public class ZhangWuService {
     public void addZhangWu(ZhangWu zhangWu){
         dao.addZhangWu(zhangWu);
     }
+
+    public void editZhangWu(ZhangWu zhangWu){
+        dao.editZhangWu(zhangWu);
+    }
+
+    public void deleteZhangWu(int zwid){
+        dao.deleteZhangWu(zwid);
+    }
 }
